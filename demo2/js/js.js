@@ -40,4 +40,5 @@ var y_axis = d3.svg.axis().scale(scale_y)
 
 g.append("g").call(x_axis)//加入x轴
 .attr("transform","translate(0,"+c_height+")");//x轴位移定位(默认在页面上方)
-g.append("g").call(y_axis);//加入y轴
+g.append("g").call(y_axis)//加入y轴
+.append('text').text("Price($)").attr({'transform':'rotate(-90)','text-anchor':'end','dy':'1em'})
