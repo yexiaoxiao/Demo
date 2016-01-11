@@ -1,0 +1,11 @@
+#container{
+	width: 500px;
+	height: 250px;
+	background-color: #ddd;
+}
+
+path{
+	fill:none;
+	stroke:#4682B4;
+	stroke-width:2;
+}
