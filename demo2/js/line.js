@@ -1,3 +1,7 @@
+/**
+ * 折线图
+ * @type {Number}
+ */
 var width = 500,
 	height = 250,
 	margin = {left:50, top:30,right:20,bottom:20},
