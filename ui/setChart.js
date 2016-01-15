@@ -17,14 +17,13 @@ color: ['0,255,255'...]             颜色rgb
 
 
 demo:
- request.eventhistorybytime(null,function(data){
-     dataChart.createCharte({
-            parent:".data-Chart",
-            type: 'polararea',
-            init:data,
-            options: {}
-        },true);
- }); 
+ dataChart.createCharte({
+        parent:".data-Chart",
+        type: 'polararea',
+        color: ['0,255,255','255,0,255','0,0,255','0,255,0','255,255,0','255,0,0','255,255,255'],
+        init:data,
+        options: {}
+    },true);
  *
  * 
  */
@@ -63,12 +62,6 @@ demo:
               init:{
                 labels:[],
                 datasets:[{
-                  // fillColor : "rgba(220,220,220,0.2)", //面积填充
-                  // strokeColor : "rgba(220,220,220,1)", //轨迹
-                  // pointColor : "rgba(220,220,220,1)",//点填充
-                  // pointStrokeColor : "#fff", //点静止外环
-                  // pointHighlightFill : "#fff", //获焦填充
-                  // pointHighlightStroke : "rgba(220,220,220,1)",
                   data: [randomScalingFactor()]
                 }]
               },
@@ -119,11 +112,7 @@ demo:
                     break;
                 }
                return this;
-               },
-               resetColor: function(){
-
                }
-               
               };
               var privateMethods = {
                  // 初始化 环形图，饼图，极地区图
@@ -132,7 +121,7 @@ demo:
                      opts = opts  || {};
                      angular.extend(options, opts);
 
-                     colorList = options["color"] || colorList;
+                     options["color"] = options["color"] || colorList;
                    
                      privateMethods.randomColor(options["init"]);
                      return options;
@@ -144,7 +133,7 @@ demo:
                      var options = angular.copy(default_thread);
                      opts = opts  || {};
                      angular.extend(options, opts);
-                     colorList = options["color"] || colorList;
+                     options["color"] = options["color"] || colorList;
                      privateMethods.randomThreadColor(options['init']['datasets']);
                      return options;
                  },
@@ -165,73 +154,12 @@ demo:
                      opts[i]['pointHighlightFill'] = "#fff"; //获焦填充
                      opts[i]['pointHighlightStroke'] = "rgba("+colorList[i]+",1)"
                    }
-                   // for(var i in opts){
-                   //    if(opts[i]['rgb'] === undefined){
-                   //       var rgb = privateMethods.randomRGB();
-                   //     }else {var rgb = opts[i]['rgb'];}
-                   //     opts[i]['fillColor'] = "rgba("+rgb+",0.2)"; //面积填充
-                   //     opts[i]['strokeColor'] = "rgba("+rgb+",1)"; //轨迹
-                   //     opts[i]['pointColor'] = "rgba("+rgb+",1)";//点填充
-                   //     opts[i]['pointStrokeColor'] = "#fff"; //点静止外环
-                   //     opts[i]['pointHighlightFill'] = "#fff"; //获焦填充
-                   //     opts[i]['pointHighlightStroke'] = "rgba("+rgb+",1)"
-                   //   }
                  },
-
-                 randomRGB: function(){
-                   var r=Math.round(Math.random()*256)%255;
-                   var g=Math.round(Math.random()*256)%255;
-                   var b=Math.round(Math.random()*256)%255;
-                   return r+","+g+","+b+"";
-                 }
 
                };
              
 
               var publicMethods = {
-                // // 线形图
-                // createLine:function(opts) {
-
-                //   var options = privateMethods.createThreadOption(opts);
-                //   var ctx = new Charts().create(options['parent']).ctx;
-                //  // console.info(options);
-                //   var myLine = new Chart(ctx).Line(options['init'], options['options']);
-
-                // },
-                // // 雷达图
-                // createRadar:function(opts) {
-                //   var options = privateMethods.createThreadOption(opts);
-                //   var ctx = new Charts().create(options['parent']).ctx;
-                //   var myRadar = new Chart(ctx).Radar(options['init'], options['options']);
-                // },
-                // // 柱状图
-                // createBar:function(opts) {
-                //   var options = privateMethods.createThreadOption(opts);
-                //   var ctx = new Charts().create(options['parent']).ctx;
-                //   var myBar = new Chart(ctx).Bar(options['init'], options['options']);
-                //   return this;
-                // },
-                // // 环形图
-                // createDoughunt:function(opts) {
-                //   var options = privateMethods.createCircleOption(opts);
-                //   var ctx = new Charts().create(options['parent']).ctx;
-                //   var myDoughunt = new Chart(ctx).Doughnut(options['init'], options['options']);
-                // },
-                // // 饼图
-                // createPie:function(opts) {
-                //   var options = privateMethods.createCircleOption(opts);
-
-                //   var ctx = new Charts().create(options['parent']).ctx;
-                //   var myPie = new Chart(ctx).Pie(options['init'], {});
-                // },
-                // // 极地区图
-                // createPolararea:function(opts) {
-                //   var options = privateMethods.createCircleOption(opts);
-                //   // console.info(options);
-                //   var ctx = new Charts().create(options['parent']).ctx;
-                //   var myPolararea = new Chart(ctx).PolarArea(options['init'], options['options']);
-                // }
-                
                   createCharte: function(opts, isCircle) {
                       var myChart = new Charts().create(opts, isCircle);
                   }
