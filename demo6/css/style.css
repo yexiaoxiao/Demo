@@ -1,0 +1,24 @@
+.icon{
+	display: block;
+}
+
+.i_add{
+	background: url("../images/i_add.png");
+}
+
+.i_add_blue{
+	background: url("../images/i_add_blue.png");
+}
+
+.i_user{
+	background: url("../images/i_user.png");
+}
+
+.icon_convict{
+	background: url("../images/icon_convict.png");
+}
+
+.icon_gou{
+	background: url("../images/icon_gou.png");
+}
+
