@@ -1,0 +1,19 @@
+
+<table class="table table-bordered" ng-controller="listMessageCtrl">
+    <tr class="head-title">
+        <th class="col-xs-3"></th>
+        <th class="col-xs-3 text-center">P2P</th>
+        <th class="col-xs-3 text-center"><a ui-sref="admin">余额宝</a></th>
+        <th class="col-xs-3 text-center">银行理财产品</th>
+    </tr>
+    <tr ng-repeat="info in infoList" ng-cloak>
+        <td class="text-right title-desc" ng-bind="info.title"></td>
+        <td class="text-center" ng-repeat="key in ['p2p', 'yeb', 'bank']">
+        <span ng-if="info[key]">
+            <span ng-if="info[key].length" ng-bind="info[key]" ng-class="{true: 'year-interest', false: 'etc-text'}[$parent.$parent.$parent.$first]"></span>
+            <span ng-if="!info[key].length" class="glyphicon glyphicon-ok is-support"></span>
+        </span>
+            <span ng-if="!info[key]" class="glyphicon glyphicon-remove is-support"></span>
+        </td>
+    </tr>
+</table>
