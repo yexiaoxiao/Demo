@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React-Event-Listener</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-dom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+	<div id="container"></div>
+	<script type="text/babel">
+	var TestClickComponent = React.createClass({
+		handleClick:function(event) {
+			var tipE = ReactDOM.findDOMNode(this.refs.tip);
+			if(tipE.style.display === 'none'){
+				tipE.style.display = 'inline';
+			}else{
+				tipE.style.display = 'none';
+			}
+			event.stopPropagation();//停止事件冒泡
+			event.preventDefault();//停止事件默认行为
+		},
+		render: function() {
+			return (
+				<div>
+					<button onClick = {this.handleClick}>显示|隐藏</button><span ref="tip">测试点击</span>
+				</div>
+			);
+		}
+	})
+	var TestInputComponent = React.createClass({
+		getInitialState:function() {
+			return {
+				inputContent: ''
+			}
+		},
+		changeHandler:function(event) {
+			this.setState({
+				inputContent:event.target.value
+			});
+			event.preventDefault();
+			event.stopPropagation();
+		},
+		render: function() {
+			return (
+				<div>
+					<input type="text" onChange={this.changeHandler}/><span>{this.state.inputContent}</span>
+				</div>
+			);
+		}	
+	});
+
+	ReactDOM.render(<div><TestClickComponent/><TestInputComponent/></div>,document.getElementById('container'));
+
+	</script>
+</body>
+</html>
