@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+<body>
+React 允许将代码封装成组件（component），然后像插入普通 HTML 标签一样，在网页中插入这个组件。React.createClass 方法就用于生成一个组件类
+组件类第一个字幕必须大写
+注：添加组件属性，有一个地方需要注意，就是 class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。
+	<div id="demo1"></div>
+	<script type="text/babel">
+		var HelloMessage = React.createClass({
+			render:function() {
+				return <h1>{this.props.name}</h1>
+			}
+		});
+		ReactDOM.render(<HelloMessage name="John"></HelloMessage>,document.getElementById('demo1'));
+	</script>
+</body>
+</html>

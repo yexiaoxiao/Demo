@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+<body>
+用户在表单填入的内容，属于用户跟组件的互动，所以不能用 this.props 读取
+上面代码中，文本输入框的值，不能用 this.props.value 读取，而要定义一个 onChange 事件的回调函数，通过 event.target.value 读取用户输入的值。textarea 元素、select元素、radio元素都属于这种情况
+	<div id="demo1"></div>
+	<script type="text/babel">
+		var Input = React.createClass({
+			getInitialState:function() {
+				return {value:0,value2:0};
+			},
+			handleChange:function(event) {
+				this.setState({value:parseInt(event.target.value)>=0?parseInt(event.target.value):0});
+			},
+			handleChange2:function(event) {
+				this.setState({value2:parseInt(event.target.value)>=0?parseInt(event.target.value):0});
+			},
+			render:function() {
+				var value = this.state.value,value2 = this.state.value2;
+
+				return (<div>
+						<input type='number' value={value} onChange={this.handleChange} />+
+						<input type='number' value={value2} onChange={this.handleChange2} />
+						=<p>{value+value2}</p>
+					</div>)
+
+			}
+		})
+		ReactDOM.render(<Input />,document.getElementById('demo1'));
+	</script>
+</body>
+</html>
