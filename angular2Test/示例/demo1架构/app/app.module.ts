@@ -12,10 +12,10 @@ import { Logger } from './logger.service';
 // import { AppComponent }  from './app.component';
 
 @NgModule({
-  imports:      [ BrowserModule ],
+  imports:      [ BrowserModule,FormsModule],
+  declarations: [ AppComponent,HeroDetailComponent,HeroListComponent,SalesTaxComponent ],
   providers:	[ BackendService,HeroService,Logger ],
-  declarations: [ AppComponent ],
-  exports:		[ AppComponent ],
+  // exports:		[ AppComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

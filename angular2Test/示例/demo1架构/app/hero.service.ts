@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Hero } from './hero';
 import { BackendService } from './backend.service';
+import {Logger} from './logger.service';
 @Injectable()
 
 export class HeroService{
@@ -12,7 +13,7 @@ export class HeroService{
 		){}
 	getHeroes(){
 		this.backend.getAll(Hero).then((heroes:Hero[])=>{
-			this.logger.log('Fetched ${heroes.length} heroes.');
+			this.logger.log(`Fetched ${heroes.length} heroes.`);
 			this.heroes.push(...heroes);
 		});
 		return this.heroes;
