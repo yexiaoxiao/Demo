@@ -1,0 +1,104 @@
+<div class="container">
+	<div [hidden]="submitted">
+		<h1>Hero Form</h1>
+		<form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+				<div class="alert alert-danger" [hidden]="name.valid||name.pristine">Name is Required</div>
+			</div>
+			<div class="form-group">
+				<label for="alterEgo">Alrer Ego</label>
+				<input type="text" class="form-control" id="alterEgo" name="alterEgo" [(ngModel)]="model.alterEgo">
+			</div>
+			<div class="form-group"><label for="power">Hero Power</label>
+				<select name="power" id="power" class="form-control" required [(ngModel)]="model.power" #power="ngModel">
+					<option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+				</select>
+				<div class="alert alert-danger" [hidden]="power.valid || power.pristine">Power is required</div>
+			</div>
+			<button class="btn btn-default" type="submit" [disabled]="!heroForm.form.valid">Submit</button>
+			<button class="btn btn-default" type="button" (click)="newHero();heroForm.reset()">New Hero</button>
+			<i>with</i>reset &nbsp;&nbsp;
+			<button class="btn btn-default" type="button" (click)="newHero()">New Hero</button><i>without</i>reset
+
+			<div>
+				<hr>
+				Name via form.controls = {{showFormControls(heroForm)}}
+			</div>
+		</form>
+	</div>
+	<div [hidden]="!submitted">
+		<h2>You Submitten the follwing:</h2>
+		<div class="row">
+			<div class="col-xs-3">Name</div>
+			<div class="col-xs-9 pull-left">{{model.name}}</div>			
+		</div>
+		<div class="row">
+			<div class="col-xs-3">Alter Ego</div>
+			<div class="col-xs-9 pull-left">{{model.alterEgo}}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3">Power</div>
+			<div class="col-xs-9 pull-left">{{model.power}}</div>
+		</div><br/>
+		<button class="btn btn-default" (click)="submitted=false">Edit</button>
+	</div>
+</div>
+	<div>
+		<form></form>
+	</div>
+
+	<hr>
+	<style>
+	.no-style .ng-valid{
+		border-left: 1px solid #ccc
+		}
+	.no-style .ng-invalid{
+		border-left: 1px solid #ccc;
+	}
+	</style>
+	<div class="no-style" style="margin-left:4px">
+		<div class="container">
+			<h1>Hero Form</h1>
+			<form>
+				<div class="form-group">
+					<label for="name">Name</label><input type="text" class="form-control" id="name" required>
+				</div>
+				<div class="form-group"><label for="alterEgo">Alter Ego</label><input type="text" class="form-control" id="alterEgo"></div>
+				<div class="form-group"><label for="power">Hero Power</label><select id="power" class="form-control" required>
+						<option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+					</select></div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+		</div>
+		<hr>
+		<div class="container">
+			<h1>Hero Form</h1>
+			<form>
+				{{diagnostic}}
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" [(ngModel)]="model.name" name="name" class="form-control" id="name" required>
+				</div>
+				<div class="form-group"><label for="alterEgo">Alter Ego</label>
+					<input type="text" class="form-control" id="alterEgo" [(ngModel)]="model.alterEgo" name="alterEgo">
+				</div>
+				<div class="form-group"><label for="power">Hero Power</label>
+					<select name="power" id="power" class="form-control" required [(ngModel)]="model.power">
+						<option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+					</select>
+				</div>
+				<button class="btn btn-default" type="submit">Submit</button>
+			</form>
+		</div>
+		<hr>
+		<input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+		TODO:remove this {{model.name}}
+		<hr>
+		<input type="text" [ngModel]="model.name" (ngModelChange)="model.name=$event" name="name" class="form-control" id="name" required>
+		TODO:remove this {{model.name}}
+		<hr>
+		<input type="text" [(ngModel)]="model.name" #spy class="form-control" id="name" name required>
+		<br>ToDO:remove this {{spy.className}}
+	</div>

@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
 				{{clickMessage}}`
 })
 
-export class clickMeCoponent{
+export class ClickMeComponent{
 	clickMessage = '';
 
 	onClickMe(){
