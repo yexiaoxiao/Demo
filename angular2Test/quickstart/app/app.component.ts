@@ -30,7 +30,7 @@ export class AppComponent{
 
 
 	get isAuthorized(){return this.user.isAuthorized;}
-	nextUser() {this.userService.getNewUSer();}
+	nextUser() {this.userService.getNewUser();}
 	get user() {return this.userService.user;}
 	get userInfo(){return `Current user,${this.user.name},is ${this.isAuthorized ? '' : 'not' } authorized.`}
 }
